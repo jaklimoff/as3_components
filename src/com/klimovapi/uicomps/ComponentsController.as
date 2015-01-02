@@ -13,16 +13,21 @@ import com.klimovapi.uicomps.interfaces.IComponent;
  * interfaces.
  */
 public class ComponentsController {
+    private static var instance:ComponentsController = new ComponentsController();
+    public static function getInstance():ComponentsController {
+        return instance;
+    }
+
     /** all registered component handlers */
     private var _componentHandlers:Vector.<ComponentHandler> = new <ComponentHandler>[];
-    public function ComponentsController() {
 
+    public function ComponentsController() {
+        if (instance) throw new Error("It can only be accessed through ComponentsController.getInstance()");
     }
 
     public function addController(controller:ComponentHandler):void {
         _componentHandlers.push(controller);
     }
-
 
     public function registerComponent(component:IComponent):void {
         for each (var controller:ComponentHandler in _componentHandlers) {

@@ -11,11 +11,10 @@ import flash.text.TextField;
 
 public class Main extends Sprite {
     public function Main() {
-        var mainController:ComponentsController = new ComponentsController();
-        mainController.addController(new KeyComponentController(stage));
+        ComponentsController.getInstance().addController(new KeyComponentController(stage));
 
         var comp:IUIComponent = new SimpleKeyComponent();
-        mainController.registerComponent(comp);
+        ComponentsController.getInstance().registerComponent(comp);
         stage.addChild(comp.getSkin());
     }
 }
